@@ -2,15 +2,19 @@ package br.ufes;
 
 import br.ufes.log.ILog;
 import br.ufes.log.JSONLog;
+import br.ufes.log.XMLLog;
 import br.ufes.model.Cliente;
 import br.ufes.model.Item;
 import br.ufes.model.Pedido;
+import br.ufes.service.UsuarioLogadoService;
+import br.ufes.util.GeradorDeLog;
 
 import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
         ILog log = new JSONLog();
+
         Cliente cliente = new Cliente(
                 "Maria Oliveira",
                 "Pessoa Física",
@@ -34,10 +38,13 @@ public class Main {
         pedido.adicionarItem(item2);
         pedido.adicionarItem(item3);
 
+        var gerar = GeradorDeLog.execute(UsuarioLogadoService.getNomeUsuario(), pedido.getId(), pedido.getValorPedido(), cliente.getNome());
 
+        log.escrever(gerar);
 
-    log.registrarLog("x", "adsad", pedido.getValorPedido(), cliente.getNome());
+        log = new XMLLog();
 
+        log.escrever(gerar);
 
     }
 }

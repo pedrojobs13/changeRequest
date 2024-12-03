@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Pedido {
+    private final String id;
     private final Double taxaEntrega;
     private final LocalDate dataPedido;
     private final Cliente cliente;
@@ -14,7 +15,7 @@ public class Pedido {
         if (taxaEntrega < 0 || dataPedido == null || cliente == null) {
             throw new IllegalArgumentException("Valores inválidos para criar o pedido.");
         }
-
+        this.id = UUID.randomUUID().toString();
         this.taxaEntrega = taxaEntrega;
         this.dataPedido = dataPedido;
         this.cliente = cliente;
@@ -32,7 +33,6 @@ public class Pedido {
         }
         return valorPedido + taxaEntrega;
     }
-
 
 
     public double getDescontoConcedido() {
@@ -57,6 +57,10 @@ public class Pedido {
 
     public LocalDate getDataPedido() {
         return dataPedido;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     @Override
