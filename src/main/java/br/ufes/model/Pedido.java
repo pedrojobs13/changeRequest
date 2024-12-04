@@ -41,7 +41,7 @@ public class Pedido {
             descontoTotal = cuponsDescontoEntrega.getValorDesconto();
         }
         return descontoTotal;
-    }
+    }    
 
     public Cliente getCliente() {
         return cliente;
